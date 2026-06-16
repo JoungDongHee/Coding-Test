@@ -38,31 +38,38 @@
 ```java
 class Solution {
     public String solution(String my_string, String overwrite_string, int s) {
-        int overWriteLength  = overwrite_string.length();
-        int myStringLength =  my_string.length();
-        
-        boolean over1length = overWriteLength >=1;
-        boolean checkLength = overWriteLength <= myStringLength;
-        boolean under1000Length = myStringLength <= 1000;
-        
-        if(over1length && checkLength && under1000Length){
-            StringBuffer sb = new StringBuffer(my_string);
+        // 매개변수 유효 범위 및 제약조건 검사
+        if (checkValid(my_string, overwrite_string, s)) {
+            // 동기화가 필요 없는 단일 스레드 환경이므로 StringBuilder를 사용하여 성능 최적화
+            StringBuilder sb = new StringBuilder(my_string);
             sb.replace(s, s + overwrite_string.length(), overwrite_string);
             return sb.toString();
         }
         
         return "";
     }
+    
+    // 유효성 검증(Validation check)을 위한 헬퍼 메서드(Helper method)
+    private boolean checkValid(String myString, String overwriteString, int s) {
+        if (myString == null || overwriteString == null) {
+            return false;
+        }
+        int myLength = myString.length();
+        int overLength = overwriteString.length();
+        
+        return overLength >= 1 && overLength <= myLength && myLength <= 1000
+                && s >= 0 && s <= myLength - overLength;
+    }
 }
 ```
 
 ## 제출 일자
 
-2026년 06월 16일 23:59:03
+2026년 06월 17일 00:26:19
 
 ## 성능 요약
 
-메모리: 75.3 MB, 시간: 0.30 ms
+메모리: 77.8 MB, 시간: 0.06 ms
 
 ## 채점결과
 
