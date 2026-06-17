@@ -38,30 +38,18 @@
 ```java
 class Solution {
     public String solution(String my_string, int k) {
-        
-        boolean stringValid = my_string.length() >=1 && my_string.length()<=100;
-        boolean kValid = k>=1 && k<=100;
-        
-        StringBuilder sb = new StringBuilder();
-        if(stringValid && kValid){
-            for(int i=1;i<=k;i++){
-                sb.append(my_string);
-            }
-            return sb.toString();
-        }
-        
-        return "";
+        return my_string.repeat(k);
     }
 }
 ```
 
 ## 제출 일자
 
-2026년 06월 17일 23:40:23
+2026년 06월 18일 00:15:08
 
 ## 성능 요약
 
-메모리: 83.1 MB, 시간: 0.04 ms
+메모리: 73.4 MB, 시간: 0.05 ms
 
 ## 채점결과
 
